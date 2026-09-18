@@ -1,0 +1,97 @@
+---
+// Galería con placeholders — gestionada desde Sveltia CMS
+const placeholders = Array.from({ length: 8 }, (_, i) => ({
+  src: `/images/gallery/trabajo-${String(i + 1).padStart(2, '0')}.webp`,
+  alt: `Trabajo de barbería ${i + 1}`, // ⚠️ PENDIENTE CLIENTE: alts descriptivos
+}));
+---
+
+<section class="py-16 px-4 sm:py-20 overflow-hidden" id="galeria">
+  <div class="mx-auto max-w-6xl">
+    <div class="flex items-end justify-between reveal">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-widest text-terracota">Galería</p>
+        <h2 class="mt-2 font-serif text-3xl font-bold sm:text-4xl">Nuestro trabajo</h2>
+      </div>
+      <a href="/galeria" class="text-sm font-medium text-terracota hover:text-terracota/80 transition-colors hidden sm:block">
+        Ver todo →
+      </a>
+    </div>
+  </div>
+
+  <!-- Auto-scrolling carousel -->
+  <div class="mt-10 gallery-carousel">
+    {placeholders.map((img, i) => (
+      <div class="gallery-card">
+        <!-- ⚠️ PENDIENTE CLIENTE: fotos reales de trabajos -->
+        <div class="w-full h-full bg-borde/50 flex items-center justify-center text-texto/20 text-xs">
+          Foto {i + 1}
+        </div>
+        <!-- Cuando haya fotos:
+        <img src={img.src} alt={img.alt} loading={i < 3 ? 'eager' : 'lazy'} />
+        -->
+      </div>
+    ))}
+    {placeholders.map((img, i) => (
+      <div class="gallery-card" aria-hidden="true">
+        <div class="w-full h-full bg-borde/50 flex items-center justify-center text-texto/20 text-xs">
+          Foto {i + 1}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="mt-6 text-center sm:hidden">
+    <a href="/galeria" class="text-sm font-medium text-terracota hover:text-terracota/80 transition-colors">
+      Ver galería completa →
+    </a>
+  </div>
+</section>
+
+<style>
+  .gallery-carousel {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    animation: scroll-gallery 60s linear infinite;
+    will-change: transform;
+  }
+  .gallery-carousel:hover {
+    animation-play-state: paused;
+  }
+  .gallery-card {
+    flex-shrink: 0;
+    margin-right: 12px;
+    overflow: hidden;
+    border: 1px solid #E5E2DD;
+    border-radius: 14px;
+    width: 280px;
+    height: 350px;
+    transition: border-color 0.3s ease;
+  }
+  .gallery-card:hover {
+    border-color: #C8553D;
+  }
+  .gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .gallery-card:hover img {
+    transform: scale(1.03);
+  }
+
+  @keyframes scroll-gallery {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 640px) {
+    .gallery-card {
+      width: 220px;
+      height: 275px;
+    }
+  }
+</style>

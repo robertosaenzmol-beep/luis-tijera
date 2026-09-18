@@ -1,0 +1,62 @@
+---
+const BOOKSY = 'https://booksy.com/es-es/92461_luis-tijera-barberia_barberia_52925_alcobendas?utm_source=web&utm_medium=cta&utm_campaign=luistijera';
+---
+
+<section class="relative min-h-[90vh] flex items-end bg-texto overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <!-- ⚠️ PENDIENTE CLIENTE: foto real del hero -->
+    <div class="w-full h-full bg-texto/80"></div>
+    <!-- Cuando haya foto real:
+    <img
+      src="/images/hero/luis-tijera-hero.webp"
+      alt="Luis Tijera Barbería — Interior del local"
+      class="w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+      width="1400"
+      height="900"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-texto via-texto/40 to-transparent"></div>
+    -->
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 mx-auto w-full max-w-6xl px-4 pb-16 pt-32 sm:px-6 sm:pb-20">
+    <p class="text-sm font-medium uppercase tracking-widest text-terracota">Alcobendas · Madrid</p>
+
+    <h1 class="mt-4 font-serif text-4xl font-bold leading-tight text-fondo sm:text-5xl lg:text-6xl">
+      Tu barbero<br />en Alcobendas.
+    </h1>
+
+    <p class="mt-4 max-w-md text-base text-fondo/60 leading-relaxed sm:text-lg">
+      Dos locales, un equipo que sabe lo que hace.<br />
+      727 reseñas lo confirman.
+    </p>
+
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+      <a
+        href={BOOKSY}
+        target="_blank"
+        rel="noopener nofollow"
+        class="rounded-pill bg-terracota px-7 py-3.5 text-center text-sm font-medium text-white hover:bg-terracota/90 transition-colors"
+        onclick="gtag('event', 'reserva_booksy', { 'metodo': 'hero' })"
+      >
+        Reservar cita →
+      </a>
+      <a
+        href="tel:+34626290492"
+        class="rounded-pill border border-fondo/20 px-7 py-3.5 text-center text-sm font-medium text-fondo/70 hover:border-fondo/40 transition-colors"
+        onclick="gtag('event', 'clic_telefono', { 'local': 'general' })"
+      >
+        626 29 04 92
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-fondo/30">
+    <div class="h-8 w-px bg-fondo/20 animate-pulse"></div>
+    <span class="text-[10px] uppercase tracking-widest">Scroll</span>
+  </div>
+</section>

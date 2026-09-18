@@ -1,0 +1,53 @@
+# Sveltia CMS config para Luis Tijera
+# Docs: https://github.com/sveltia/sveltia-cms
+
+backend:
+  name: github
+  repo: TU_USUARIO/luistijera   # ⚠️ PENDIENTE: cambiar por el repo real
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+locale: es
+
+collections:
+  # ──────────────────────────────────────────
+  # BLOG
+  # ──────────────────────────────────────────
+  - name: "blog"
+    label: "Blog"
+    label_singular: "Post"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: "Título", name: title, widget: string }
+      - { label: "Fecha", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - { label: "Categoría", name: category, widget: select, options: ["Barbería", "Tendencias", "Productos", "Consejos", "Novedades"] }
+      - { label: "Extracto", name: excerpt, widget: text, hint: "Resumen breve (1-2 frases) que aparece en la lista del blog." }
+      - { label: "Imagen de portada", name: coverImage, widget: image, required: false, hint: "Opcional. Se muestra en el post." }
+      - { label: "Contenido", name: body, widget: markdown }
+
+  # ──────────────────────────────────────────
+  # GALERÍA
+  # ──────────────────────────────────────────
+  - name: "gallery"
+    label: "Galería"
+    label_singular: "Foto"
+    folder: "src/content/gallery"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Imagen", name: "image", widget: "image" }
+      - { label: "Título / descripción", name: "title", widget: "string", required: false }
+      - label: "Estilo"
+        name: "style"
+        widget: "select"
+        options: ["Corte clásico", "Taper fade", "Degradado", "Mullet", "Barba", "Color", "Otro"]
+        required: false
+      - { label: "Barbero", name: "barber", widget: "string", required: false }
+      - { label: "Destacado", name: "featured", widget: "boolean", default: false }
+      - { label: "Publicado", name: "published", widget: "boolean", default: true }

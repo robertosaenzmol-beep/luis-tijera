@@ -1,0 +1,38 @@
+---
+const services = [
+  { name: 'Corte clásico', price: '18,90 €', time: '25 min', desc: 'El de siempre, bien hecho.' },
+  { name: 'Taper fade', price: '18,90 €', time: '30 min', desc: 'Degradado limpio, a máquina y tijera.' },
+  { name: 'Corte + barba shaver', price: '32,90 €', time: '55 min', desc: 'El pack completo. Sales nuevo.' },
+  { name: 'Afeitado tradicional', price: '20,90 €', time: '30 min', desc: 'Navaja, toalla caliente, sin prisas.' },
+];
+// ⚠️ PENDIENTE CLIENTE: confirmar precios actualizados
+---
+
+<section class="py-16 px-4 sm:py-20" id="servicios">
+  <div class="mx-auto max-w-6xl">
+    <div class="text-center reveal">
+      <p class="text-xs font-semibold uppercase tracking-widest text-terracota">Servicios</p>
+      <h2 class="mt-2 font-serif text-3xl font-bold sm:text-4xl">Lo que hacemos</h2>
+      <p class="mt-2 text-sm text-texto/50">Precios claros. Sin sorpresas.</p>
+    </div>
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {services.map((s, i) => (
+        <div class="reveal rounded-card border border-borde bg-superficie p-6 hover:border-terracota/30 transition-colors" style={`transition-delay: ${i * 80}ms`}>
+          <h3 class="font-serif text-lg font-bold">{s.name}</h3>
+          <p class="mt-1 text-sm text-texto/50">{s.desc}</p>
+          <div class="mt-4 flex items-end justify-between">
+            <span class="text-2xl font-semibold text-terracota">{s.price}</span>
+            <span class="text-xs text-texto/40">{s.time}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-8 text-center">
+      <a href="/servicios" class="text-sm font-medium text-terracota hover:text-terracota/80 transition-colors">
+        Ver todos los servicios y precios →
+      </a>
+    </div>
+  </div>
+</section>

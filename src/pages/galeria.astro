@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import CTABand from '../components/CTABand.astro';
+import Footer from '../components/Footer.astro';
+
+// ⚠️ PENDIENTE CLIENTE: fotos reales de trabajos
+const images = Array.from({ length: 12 }, (_, i) => ({
+  src: `/images/gallery/trabajo-${String(i + 1).padStart(2, '0')}.webp`,
+  alt: `Trabajo de barbería ${i + 1}`,
+}));
+---
+
+<Layout
+  title="Galería — Trabajos de Luis Tijera Barbería Alcobendas"
+  description="Galería de trabajos de Luis Tijera: cortes, degradados, taper fades y arreglos de barba. Barbería en Alcobendas, Madrid."
+  canonical="/galeria"
+>
+  <Nav />
+
+  <main class="pt-16">
+    <section class="py-16 px-4 sm:py-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center reveal">
+          <p class="text-xs font-semibold uppercase tracking-widest text-terracota">Nuestro trabajo</p>
+          <h1 class="mt-2 font-serif text-3xl font-bold sm:text-4xl">Galería</h1>
+          <p class="mt-2 text-sm text-texto/50">Cada corte tiene su proceso. Aquí están los resultados.</p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          {images.map((img, i) => (
+            <div class="reveal group aspect-[3/4] overflow-hidden rounded-card border border-borde hover:border-terracota/30 transition-colors" style={`transition-delay: ${i * 50}ms`}>
+              <!-- ⚠️ PENDIENTE CLIENTE: fotos reales -->
+              <div class="w-full h-full bg-borde/50 flex items-center justify-center text-texto/20 text-xs group-hover:bg-borde/70 transition-colors">
+                Foto {i + 1}
+              </div>
+              <!-- Cuando haya fotos:
+              <img
+                src={img.src}
+                alt={img.alt}
+                class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                loading={i < 4 ? 'eager' : 'lazy'}
+                width="400"
+                height="533"
+              />
+              -->
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-10 text-center">
+          <p class="text-sm text-texto/50">¿Quieres ver más? Síguenos en Instagram</p>
+          <a
+            href="https://www.instagram.com/luis_tijera_/"
+            target="_blank"
+            rel="noopener nofollow"
+            class="mt-3 inline-block text-sm font-medium text-terracota hover:text-terracota/80 transition-colors"
+          >
+            @luis_tijera_ →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <CTABand headline="¿Te gusta lo que ves?" subtitle="Reserva y compruébalo en persona." />
+  </main>
+
+  <Footer />
+</Layout>
+
+<style is:global>
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

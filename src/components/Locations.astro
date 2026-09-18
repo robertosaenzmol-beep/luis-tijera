@@ -1,0 +1,79 @@
+---
+const locals = [
+  {
+    name: 'Centro',
+    type: 'Peluquería + Barbería',
+    address: 'C. de la Libertad, 4',
+    zip: '28100 Alcobendas',
+    phone: '626 29 04 92',
+    phoneHref: '+34626290492',
+    href: '/peluqueria-alcobendas-centro',
+    extras: 'Coloración · Extensiones · Barbería',
+    mapsUrl: 'https://maps.google.com/?q=C.+de+la+Libertad,+4,+28100+Alcobendas,+Madrid',
+  },
+  {
+    name: 'La Ermita',
+    type: 'Barbería',
+    address: 'Av. de la Ermita, 1',
+    zip: '28108 Alcobendas',
+    phone: '911 477 236',
+    phoneHref: '+34911477236',
+    href: '/barberia-alcobendas-la-ermita',
+    extras: 'Cortes · Degradados · Afeitado',
+    mapsUrl: 'https://maps.google.com/?q=Av.+de+la+Ermita,+1,+28108+Alcobendas,+Madrid',
+  },
+];
+---
+
+<section class="py-16 px-4 sm:py-20 bg-superficie border-y border-borde" id="locales">
+  <div class="mx-auto max-w-6xl">
+    <div class="text-center reveal">
+      <p class="text-xs font-semibold uppercase tracking-widest text-terracota">Dos locales</p>
+      <h2 class="mt-2 font-serif text-3xl font-bold sm:text-4xl">Encuéntranos en Alcobendas</h2>
+      <p class="mt-2 text-sm text-texto/50">L-S 10:00–20:00 · Domingos cerrado</p>
+    </div>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      {locals.map((l, i) => (
+        <div class="reveal rounded-card border border-borde bg-fondo p-6 sm:p-8 hover:border-bosque/30 transition-colors" style={`transition-delay: ${i * 100}ms`}>
+          <!-- ⚠️ PENDIENTE CLIENTE: foto del local -->
+          <div class="aspect-[16/9] w-full rounded-lg bg-borde/50 mb-6 flex items-center justify-center text-texto/20 text-sm">
+            Foto del local
+          </div>
+
+          <div class="flex items-start justify-between">
+            <div>
+              <h3 class="font-serif text-xl font-bold">{l.name}</h3>
+              <span class="mt-1 inline-block rounded-pill bg-bosque/10 px-3 py-0.5 text-xs font-medium text-bosque">{l.type}</span>
+            </div>
+          </div>
+
+          <address class="mt-4 space-y-1 text-sm not-italic text-texto/60">
+            <p>{l.address}</p>
+            <p>{l.zip}</p>
+            <a href={`tel:${l.phoneHref}`} class="block font-medium text-texto hover:text-terracota transition-colors" onclick={`gtag('event', 'clic_telefono', { 'local': '${l.name.toLowerCase()}' })`}>
+              {l.phone}
+            </a>
+          </address>
+
+          <p class="mt-3 text-xs text-texto/40">{l.extras}</p>
+
+          <div class="mt-6 flex gap-3">
+            <a href={l.href} class="rounded-pill bg-texto px-5 py-2.5 text-xs font-medium text-fondo hover:bg-texto/90 transition-colors">
+              Ver local →
+            </a>
+            <a
+              href={l.mapsUrl}
+              target="_blank"
+              rel="noopener"
+              class="rounded-pill border border-borde px-5 py-2.5 text-xs font-medium text-texto/60 hover:border-texto/30 transition-colors"
+              onclick={`gtag('event', 'clic_como_llegar', { 'local': '${l.name.toLowerCase()}' })`}
+            >
+              Cómo llegar
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import CTABand from '../../components/CTABand.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout
+  title={`${post.data.title} — Luis Tijera Barbería`}
+  description={post.data.excerpt}
+  canonical={`/blog/${post.slug}`}
+>
+  <Nav />
+
+  <main class="pt-16">
+    <article class="py-16 px-4 sm:py-20">
+      <div class="mx-auto max-w-2xl">
+        <a href="/blog" class="text-xs font-medium text-terracota hover:text-terracota/80 transition-colors">← Volver al blog</a>
+
+        <div class="mt-6">
+          <div class="flex items-center gap-3 text-xs text-texto/40">
+            <span class="rounded-pill bg-bosque/10 px-2.5 py-0.5 font-medium text-bosque">{post.data.category}</span>
+            <time datetime={post.data.date.toISOString().split('T')[0]}>
+              {post.data.date.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </time>
+          </div>
+          <h1 class="mt-4 font-serif text-3xl font-bold sm:text-4xl">{post.data.title}</h1>
+        </div>
+
+        {post.data.coverImage && (
+          <img
+            src={post.data.coverImage}
+            alt={post.data.title}
+            class="mt-8 w-full rounded-card border border-borde"
+            loading="eager"
+          />
+        )}
+
+        <div class="prose mt-8">
+          <Content />
+        </div>
+      </div>
+    </article>
+
+    <CTABand headline="¿Listo para tu próximo corte?" subtitle="Reserva en 30 segundos." />
+  </main>
+
+  <Footer />
+</Layout>
+
+<style is:global>
+  .prose {
+    @apply text-texto/80 leading-relaxed;
+  }
+  .prose h2 {
+    @apply font-serif text-xl font-bold text-texto mt-8 mb-3;
+  }
+  .prose h3 {
+    @apply font-serif text-lg font-bold text-texto mt-6 mb-2;
+  }
+  .prose p {
+    @apply mb-4 text-sm sm:text-base;
+  }
+  .prose ul, .prose ol {
+    @apply mb-4 pl-5 text-sm sm:text-base;
+  }
+  .prose li {
+    @apply mb-1;
+  }
+  .prose strong {
+    @apply font-semibold text-texto;
+  }
+  .prose a {
+    @apply text-terracota underline hover:text-terracota/80;
+  }
+  .prose blockquote {
+    @apply border-l-2 border-terracota pl-4 italic text-texto/60;
+  }
+</style>

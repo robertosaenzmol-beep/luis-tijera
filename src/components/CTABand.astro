@@ -1,0 +1,38 @@
+---
+interface Props {
+  headline?: string;
+  subtitle?: string;
+}
+
+const {
+  headline = '727 clientes no se equivocan.',
+  subtitle = 'Reserva tu cita y compruébalo.',
+} = Astro.props;
+
+const BOOKSY = 'https://booksy.com/es-es/92461_luis-tijera-barberia_barberia_52925_alcobendas?utm_source=web&utm_medium=cta&utm_campaign=luistijera';
+---
+
+<section class="bg-texto py-16 px-4 sm:py-20">
+  <div class="mx-auto max-w-2xl text-center">
+    <h2 class="font-serif text-2xl font-bold text-fondo sm:text-3xl">{headline}</h2>
+    <p class="mt-3 text-sm text-fondo/60">{subtitle}</p>
+    <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+      <a
+        href={BOOKSY}
+        target="_blank"
+        rel="noopener nofollow"
+        class="rounded-pill bg-terracota px-7 py-3 text-sm font-medium text-white hover:bg-terracota/90 transition-colors"
+        onclick="gtag('event', 'reserva_booksy', { 'metodo': 'cta_band' })"
+      >
+        Reservar cita →
+      </a>
+      <a
+        href="tel:+34626290492"
+        class="rounded-pill border border-fondo/20 px-7 py-3 text-sm font-medium text-fondo/80 hover:border-fondo/40 transition-colors"
+        onclick="gtag('event', 'clic_telefono', { 'local': 'general' })"
+      >
+        Llamar — 626 29 04 92
+      </a>
+    </div>
+  </div>
+</section>

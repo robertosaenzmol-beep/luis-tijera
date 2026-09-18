@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Política de Privacidad — Luis Tijera Barbería"
+  description="Política de privacidad de Luis Tijera Barbería. Información sobre el tratamiento de datos personales."
+  canonical="/politica-de-privacidad"
+>
+  <Nav />
+
+  <main class="pt-16">
+    <section class="py-16 px-4 sm:py-20">
+      <div class="mx-auto max-w-2xl prose-legal">
+        <h1>Política de Privacidad</h1>
+
+        <h2>1. Responsable del tratamiento</h2>
+        <ul>
+          <li><strong>Responsable:</strong> ⚠️ PENDIENTE CLIENTE</li>
+          <li><strong>NIF/CIF:</strong> ⚠️ PENDIENTE CLIENTE</li>
+          <li><strong>Dirección:</strong> C. de la Libertad, 4, 28100 Alcobendas, Madrid</li>
+          <li><strong>Email:</strong> ⚠️ PENDIENTE CLIENTE</li>
+        </ul>
+
+        <h2>2. Finalidad del tratamiento</h2>
+        <p>Los datos personales que pudieran recogerse a través de este sitio web se utilizan únicamente para las siguientes finalidades:</p>
+        <ul>
+          <li>Gestión de consultas recibidas por teléfono o email</li>
+          <li>Análisis del tráfico web mediante Google Analytics (con consentimiento previo)</li>
+        </ul>
+
+        <h2>3. Legitimación</h2>
+        <p>La base legal para el tratamiento de los datos es el consentimiento del usuario, otorgado al aceptar la política de cookies y al realizar consultas voluntarias.</p>
+
+        <h2>4. Destinatarios</h2>
+        <p>No se cederán datos a terceros, salvo obligación legal. Se utilizan los siguientes encargados de tratamiento:</p>
+        <ul>
+          <li><strong>Google Analytics (Google LLC):</strong> análisis web. Política de privacidad de Google.</li>
+          <li><strong>Vercel Inc.:</strong> alojamiento web.</li>
+        </ul>
+
+        <h2>5. Derechos del usuario</h2>
+        <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, limitación, portabilidad y oposición enviando un email a ⚠️ PENDIENTE CLIENTE.</p>
+
+        <h2>6. Conservación de datos</h2>
+        <p>Los datos se conservarán mientras sean necesarios para la finalidad para la que fueron recogidos y mientras no se solicite su supresión.</p>
+
+        <h2>7. Seguridad</h2>
+        <p>Se han adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad de los datos personales.</p>
+
+        <p class="text-xs text-texto/40 mt-8">Última actualización: septiembre 2026</p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose-legal h1 {
+    @apply font-serif text-3xl font-bold mb-6;
+  }
+  .prose-legal h2 {
+    @apply font-serif text-lg font-bold mt-8 mb-3 text-texto;
+  }
+  .prose-legal p {
+    @apply text-sm text-texto/70 leading-relaxed mb-4;
+  }
+  .prose-legal ul {
+    @apply text-sm text-texto/70 leading-relaxed mb-4 pl-5 list-disc;
+  }
+  .prose-legal li {
+    @apply mb-1;
+  }
+</style>

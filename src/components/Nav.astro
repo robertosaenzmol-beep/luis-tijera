@@ -1,0 +1,84 @@
+---
+const BOOKSY = 'https://booksy.com/es-es/92461_luis-tijera-barberia_barberia_52925_alcobendas?utm_source=web&utm_medium=cta&utm_campaign=luistijera';
+---
+
+<nav class="fixed top-0 left-0 right-0 z-40 bg-fondo/90 backdrop-blur-md border-b border-borde/50">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+    <a href="/" class="flex items-center gap-2">
+      <!-- ⚠️ PENDIENTE CLIENTE: logo real -->
+      <span class="font-serif text-xl font-bold text-texto">Luis Tijera</span>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden items-center gap-6 md:flex">
+      <a href="/servicios" class="text-sm font-medium text-texto/70 hover:text-texto transition-colors">Servicios</a>
+      <a href="/galeria" class="text-sm font-medium text-texto/70 hover:text-texto transition-colors">Galería</a>
+      <a href="/blog" class="text-sm font-medium text-texto/70 hover:text-texto transition-colors">Blog</a>
+      <div class="relative group">
+        <button class="text-sm font-medium text-texto/70 hover:text-texto transition-colors flex items-center gap-1">
+          Locales
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+          <div class="bg-superficie rounded-card border border-borde shadow-lg p-2 min-w-[220px]">
+            <a href="/peluqueria-alcobendas-centro" class="block rounded-lg px-3 py-2 text-sm text-texto/70 hover:bg-fondo hover:text-texto transition-colors">
+              📍 Centro — C. Libertad
+            </a>
+            <a href="/barberia-alcobendas-la-ermita" class="block rounded-lg px-3 py-2 text-sm text-texto/70 hover:bg-fondo hover:text-texto transition-colors">
+              📍 La Ermita — Av. Ermita
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <a
+        href={BOOKSY}
+        target="_blank"
+        rel="noopener nofollow"
+        class="rounded-pill bg-terracota px-5 py-2.5 text-sm font-medium text-white hover:bg-terracota/90 transition-colors"
+        onclick="gtag('event', 'reserva_booksy', { 'metodo': 'nav' })"
+      >
+        Reservar cita
+      </a>
+
+      <!-- Mobile menu button -->
+      <button
+        class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-texto/5 transition-colors"
+        id="mobile-menu-btn"
+        aria-label="Abrir menú"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="hidden border-t border-borde/50 bg-fondo md:hidden" id="mobile-menu">
+    <div class="px-4 py-4 flex flex-col gap-1">
+      <a href="/servicios" class="rounded-lg px-3 py-2.5 text-sm font-medium text-texto/70 hover:bg-texto/5">Servicios y precios</a>
+      <a href="/galeria" class="rounded-lg px-3 py-2.5 text-sm font-medium text-texto/70 hover:bg-texto/5">Galería</a>
+      <a href="/blog" class="rounded-lg px-3 py-2.5 text-sm font-medium text-texto/70 hover:bg-texto/5">Blog</a>
+      <a href="/peluqueria-alcobendas-centro" class="rounded-lg px-3 py-2.5 text-sm font-medium text-texto/70 hover:bg-texto/5">📍 Centro — C. Libertad</a>
+      <a href="/barberia-alcobendas-la-ermita" class="rounded-lg px-3 py-2.5 text-sm font-medium text-texto/70 hover:bg-texto/5">📍 La Ermita — Av. Ermita</a>
+      <a
+        href="tel:+34626290492"
+        class="rounded-lg px-3 py-2.5 text-sm font-medium text-bosque hover:bg-texto/5"
+        onclick="gtag('event', 'clic_telefono', { 'local': 'general' })"
+      >
+        📞 626 29 04 92
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>

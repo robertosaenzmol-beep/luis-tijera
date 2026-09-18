@@ -1,0 +1,258 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+  preloadImage?: string;
+}
+
+const {
+  title = 'Luis Tijera — Barbería y Peluquería en Alcobendas, Madrid',
+  description = 'Tu barbero en Alcobendas. Dos locales, 727 reseñas. Cortes, degradados, taper fade y arreglo de barba. Reserva en Booksy o llama.',
+  ogImage = '/images/hero/luis-tijera-hero.webp',
+  canonical,
+  preloadImage,
+} = Astro.props;
+
+const SITE = 'https://luistijera.es';
+const canonicalURL = canonical ? `${SITE}${canonical}` : `${SITE}${Astro.url.pathname}`;
+const ogImageURL = `${SITE}${ogImage}`;
+
+/* ── JSON-LD: Local 1 — Peluquería (C. Libertad) ── */
+const local1Schema = {
+  '@context': 'https://schema.org',
+  '@type': 'HairSalon',
+  name: 'Luis Tijera Peluquería',
+  description: 'Peluquería y barbería en el centro de Alcobendas. Cortes, coloración, extensiones y barbería.',
+  url: `${SITE}/peluqueria-alcobendas-centro`,
+  telephone: '+34626290492',
+  image: ogImageURL,
+  priceRange: '€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'C. de la Libertad, 4',
+    addressLocality: 'Alcobendas',
+    addressRegion: 'Madrid',
+    postalCode: '28100',
+    addressCountry: 'ES',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 40.5475,  // ⚠️ PENDIENTE CLIENTE: coordenadas exactas
+    longitude: -3.6420,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '10:00',
+      closes: '20:00',
+    },
+  ],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '579',
+    bestRating: '5',
+  },
+  sameAs: [
+    'https://www.instagram.com/luis_tijera_/',
+    'https://booksy.com/es-es/92461_luis-tijera-barberia_barberia_52925_alcobendas',
+  ],
+};
+
+/* ── JSON-LD: Local 2 — Barbería (Av. Ermita) ── */
+const local2Schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BarberShop',
+  name: 'Luis Tijera Barbería',
+  description: 'Barbería en Alcobendas, zona La Ermita. Cortes, degradados, taper fade y afeitado tradicional.',
+  url: `${SITE}/barberia-alcobendas-la-ermita`,
+  telephone: '+34911477236',
+  image: ogImageURL,
+  priceRange: '€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Av. de la Ermita, 1',
+    addressLocality: 'Alcobendas',
+    addressRegion: 'Madrid',
+    postalCode: '28108',
+    addressCountry: 'ES',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 40.5350,  // ⚠️ PENDIENTE CLIENTE: coordenadas exactas
+    longitude: -3.6300,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '10:00',
+      closes: '20:00',
+    },
+  ],
+  sameAs: [
+    'https://www.instagram.com/luis_tijera_/',
+    'https://booksy.com/es-es/92461_luis-tijera-barberia_barberia_52925_alcobendas',
+  ],
+};
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImageURL} />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:site_name" content="Luis Tijera Barbería" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageURL} />
+
+  <!-- Favicon -->
+  <!-- ⚠️ PENDIENTE CLIENTE: favicon real -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- LCP preload -->
+  {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+
+  <!-- Sitemap -->
+  <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <!-- SEO: geo -->
+  <meta name="author" content="Luis Tijera Barbería" />
+  <meta name="geo.region" content="ES-MD" />
+  <meta name="geo.placename" content="Alcobendas" />
+  <link rel="alternate" hreflang="es" href={canonicalURL} />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
+    media="print"
+    onload="this.media='all'"
+  />
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
+    />
+  </noscript>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(local1Schema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(local2Schema)} />
+
+  <!-- GA4 stub -->
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+  </script>
+</head>
+<body class="bg-fondo text-texto font-sans antialiased">
+
+  <slot />
+
+  <!-- COOKIE BANNER ====================================== -->
+  <div
+    class="fixed bottom-0 left-0 right-0 z-50 bg-superficie border-t border-borde px-4 py-4 shadow-lg sm:px-6"
+    id="cookie-banner"
+    hidden
+    role="dialog"
+    aria-label="Aviso de cookies"
+  >
+    <div class="mx-auto flex max-w-4xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-sm text-texto/70">
+        Usamos cookies propias y de terceros (Google Analytics) para mejorar tu experiencia y analizar el tráfico.
+        <a href="/politica-de-cookies" class="underline hover:text-terracota">Más información</a>
+      </p>
+      <div class="flex gap-2 shrink-0">
+        <button
+          class="rounded-pill border border-borde px-4 py-2 text-xs font-medium text-texto/60 hover:border-texto/30 transition-colors"
+          id="cookie-reject"
+        >
+          Rechazar
+        </button>
+        <button
+          class="rounded-pill bg-terracota px-4 py-2 text-xs font-medium text-white hover:bg-terracota/90 transition-colors"
+          id="cookie-accept"
+        >
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      /* ── Scroll reveal ── */
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+      /* ── Cookie banner ── */
+      const GA_ID = 'G-XXXXXXXXXX'; // ⚠️ PENDIENTE CLIENTE: Measurement ID real
+      const STORAGE_KEY = 'cookies_accepted';
+
+      function loadGA() {
+        const s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+        s.async = true;
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', GA_ID);
+      }
+
+      const stored = localStorage.getItem(STORAGE_KEY);
+
+      if (stored === null) {
+        document.getElementById('cookie-banner')?.removeAttribute('hidden');
+      } else if (stored === 'true') {
+        loadGA();
+      }
+
+      document.getElementById('cookie-accept')?.addEventListener('click', function () {
+        localStorage.setItem(STORAGE_KEY, 'true');
+        document.getElementById('cookie-banner')?.setAttribute('hidden', '');
+        loadGA();
+      });
+
+      document.getElementById('cookie-reject')?.addEventListener('click', function () {
+        localStorage.setItem(STORAGE_KEY, 'false');
+        document.getElementById('cookie-banner')?.setAttribute('hidden', '');
+      });
+    }());
+  </script>
+</body>
+</html>

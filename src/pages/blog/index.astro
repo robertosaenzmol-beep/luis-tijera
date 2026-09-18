@@ -1,0 +1,65 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout
+  title="Blog — Luis Tijera Barbería Alcobendas"
+  description="Consejos de barbería, tendencias de corte y novedades de Luis Tijera. Tu barbero en Alcobendas, Madrid."
+  canonical="/blog"
+>
+  <Nav />
+
+  <main class="pt-16">
+    <section class="py-16 px-4 sm:py-20">
+      <div class="mx-auto max-w-3xl">
+        <div class="text-center reveal">
+          <p class="text-xs font-semibold uppercase tracking-widest text-terracota">Blog</p>
+          <h1 class="mt-2 font-serif text-3xl font-bold sm:text-4xl">Novedades y consejos</h1>
+        </div>
+
+        <div class="mt-10 space-y-6">
+          {posts.map((post, i) => (
+            <a
+              href={`/blog/${post.slug}`}
+              class="reveal block rounded-card border border-borde bg-superficie p-6 hover:border-terracota/30 transition-colors"
+              style={`transition-delay: ${i * 80}ms`}
+            >
+              <div class="flex items-center gap-3 text-xs text-texto/40">
+                <span class="rounded-pill bg-bosque/10 px-2.5 py-0.5 font-medium text-bosque">{post.data.category}</span>
+                <time datetime={post.data.date.toISOString().split('T')[0]}>
+                  {post.data.date.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
+                </time>
+              </div>
+              <h2 class="mt-3 font-serif text-lg font-bold text-texto">{post.data.title}</h2>
+              <p class="mt-2 text-sm text-texto/60 leading-relaxed">{post.data.excerpt}</p>
+            </a>
+          ))}
+        </div>
+
+        {posts.length === 0 && (
+          <p class="mt-10 text-center text-sm text-texto/40">No hay posts todavía. ¡Pronto!</p>
+        )}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style is:global>
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

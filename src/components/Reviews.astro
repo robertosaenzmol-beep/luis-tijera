@@ -1,0 +1,37 @@
+---
+// ⚠️ PENDIENTE CLIENTE: reseñas reales seleccionadas con permiso
+const reviews = [
+  { name: 'Cliente 1', text: 'Llevo 3 años yendo y nunca he salido decepcionado. Los mejores de Alcobendas sin duda.', source: 'Google' },
+  { name: 'Cliente 2', text: 'Fui por primera vez y el trato fue genial. Me hicieron un degradado perfecto. Repito seguro.', source: 'Google' },
+  { name: 'Cliente 3', text: 'Muy profesionales y el local está impecable. Además con cita previa no esperas nada.', source: 'Booksy' },
+  { name: 'Cliente 4', text: 'El mejor sitio para cortarte el pelo en la zona. Buenos profesionales y buen ambiente.', source: 'Google' },
+  { name: 'Cliente 5', text: 'Mi hijo no se deja cortar el pelo en ningún sitio, aquí sale encantado. Un 10.', source: 'Google' },
+  { name: 'Cliente 6', text: 'Corte y barba impecable. Se nota que les gusta lo que hacen. 100% recomendable.', source: 'Booksy' },
+];
+---
+
+<section class="py-16 px-4 sm:py-20 bg-superficie border-y border-borde">
+  <div class="mx-auto max-w-6xl">
+    <div class="text-center reveal">
+      <p class="text-xs font-semibold uppercase tracking-widest text-terracota">Reseñas</p>
+      <h2 class="mt-2 font-serif text-3xl font-bold sm:text-4xl">Lo que dicen nuestros clientes</h2>
+    </div>
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {reviews.map((r, i) => (
+        <div class="reveal rounded-card border border-borde bg-fondo p-6" style={`transition-delay: ${i * 80}ms`}>
+          <div class="flex text-terracota mb-3">
+            {Array.from({ length: 5 }).map(() => (
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            ))}
+          </div>
+          <p class="text-sm text-texto/70 leading-relaxed">"{r.text}"</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-sm font-medium text-texto">{r.name}</span>
+            <span class="text-xs text-texto/40">{r.source}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

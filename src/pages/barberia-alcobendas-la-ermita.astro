@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import CTABand from '../components/CTABand.astro';
+import Footer from '../components/Footer.astro';
+
+const BOOKSY = 'https://booksy.com/es-es/92461_luis-tijera-barberia_barberia_52925_alcobendas?utm_source=web&utm_medium=cta&utm_campaign=luistijera_ermita';
+const MAPS = 'https://maps.google.com/?q=Av.+de+la+Ermita,+1,+28108+Alcobendas,+Madrid';
+
+const services = [
+  { name: 'Corte clásico', price: '18,90 €', time: '25 min' },
+  { name: 'Corte taper fade', price: '18,90 €', time: '30 min' },
+  { name: 'Corte + lavado y peinado', price: '18,90 €', time: '30 min' },
+  { name: 'Corte mullet', price: '18,90 €', time: '30 min' },
+  { name: 'Corte niño', price: '18,90 €', time: '30 min' },
+  { name: 'Corte jubilado', price: '15,90 €', time: '25 min' },
+  { name: 'Afeitado de barba tradicional', price: '20,90 €', time: '30 min' },
+  { name: 'Corte + afeitado tradicional', price: '35,90 €', time: '55 min' },
+  { name: 'Corte + barba shaver', price: '32,90 €', time: '55 min' },
+];
+// ⚠️ PENDIENTE CLIENTE: confirmar precios
+
+const reviews = [
+  { name: 'Cliente 1', text: 'La mejor barbería de la zona. Profesionales de verdad.', source: 'Google' },
+  { name: 'Cliente 2', text: 'Muy buen trato, el degradado quedó perfecto. Repetiré seguro.', source: 'Booksy' },
+  { name: 'Cliente 3', text: 'Local nuevo, limpio y moderno. Se nota que cuidan cada detalle.', source: 'Google' },
+];
+// ⚠️ PENDIENTE CLIENTE: reseñas reales
+---
+
+<Layout
+  title="Barbería en Alcobendas — Luis Tijera La Ermita | Cortes, Fades y Barba"
+  description="Barbería en Alcobendas, zona La Ermita. Cortes, taper fade, degradados y afeitado tradicional. 4,8★ en Booksy. Reserva tu cita."
+  canonical="/barberia-alcobendas-la-ermita"
+>
+  <Nav />
+
+  <main class="pt-16">
+    <!-- HERO -->
+    <section class="relative bg-texto py-20 px-4 sm:py-28">
+      <!-- ⚠️ PENDIENTE CLIENTE: foto real del local -->
+      <div class="mx-auto max-w-4xl text-center">
+        <p class="text-sm font-medium uppercase tracking-widest text-terracota">Alcobendas · La Ermita</p>
+        <h1 class="mt-4 font-serif text-3xl font-bold text-fondo sm:text-5xl">
+          Barbería en Alcobendas
+        </h1>
+        <p class="mt-3 text-base text-fondo/60">
+          Av. de la Ermita, 1 · 28108 Alcobendas · 911 477 236
+        </p>
+        <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <a
+            href={BOOKSY}
+            target="_blank"
+            rel="noopener nofollow"
+            class="rounded-pill bg-terracota px-7 py-3.5 text-sm font-medium text-white hover:bg-terracota/90 transition-colors"
+            onclick="gtag('event', 'reserva_booksy', { 'metodo': 'hero', 'local': 'ermita' })"
+          >
+            Reservar cita →
+          </a>
+          <a
+            href={MAPS}
+            target="_blank"
+            rel="noopener"
+            class="rounded-pill border border-fondo/20 px-7 py-3.5 text-sm font-medium text-fondo/70 hover:border-fondo/40 transition-colors"
+            onclick="gtag('event', 'clic_como_llegar', { 'local': 'ermita' })"
+          >
+            Cómo llegar →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <section class="py-12 px-4 border-b border-borde">
+      <div class="mx-auto max-w-4xl grid gap-6 sm:grid-cols-3">
+        <div class="text-center reveal">
+          <p class="text-xs font-semibold uppercase tracking-widest text-texto/40">Dirección</p>
+          <p class="mt-2 text-sm text-texto">Av. de la Ermita, 1</p>
+          <p class="text-sm text-texto/60">28108 Alcobendas, Madrid</p>
+        </div>
+        <div class="text-center reveal" style="transition-delay: 80ms">
+          <p class="text-xs font-semibold uppercase tracking-widest text-texto/40">Teléfono</p>
+          <a href="tel:+34911477236" class="mt-2 block text-sm font-medium text-texto hover:text-terracota transition-colors" onclick="gtag('event', 'clic_telefono', { 'local': 'ermita' })">
+            911 477 236
+          </a>
+        </div>
+        <div class="text-center reveal" style="transition-delay: 160ms">
+          <p class="text-xs font-semibold uppercase tracking-widest text-texto/40">Horario</p>
+          <p class="mt-2 text-sm text-texto">L-S 10:00–20:00</p>
+          <p class="text-sm text-texto/60">Domingos cerrado</p>
+        </div>
+      </div>
+
+      <div class="mx-auto mt-8 flex max-w-md flex-wrap justify-center gap-2">
+        {['Accesible', 'Apto niños', 'Aparcamiento', 'Wi-Fi'].map(tag => (
+          <span class="rounded-pill bg-bosque/10 px-3 py-1 text-xs font-medium text-bosque">{tag}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- MAPA -->
+    <section class="border-b border-borde">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3033.5!2d-3.63!3d40.535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDMyJzA2LjAiTiAzwrAzNyc0OC4wIlc!5e0!3m2!1ses!2ses!4v1"
+        width="100%"
+        height="350"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Mapa Luis Tijera Barbería La Ermita"
+      ></iframe>
+      <!-- ⚠️ PENDIENTE CLIENTE: embed real de Google Maps con las coordenadas exactas -->
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="py-12 px-4 sm:py-16">
+      <div class="mx-auto max-w-2xl">
+        <h2 class="font-serif text-2xl font-bold text-center reveal">Servicios y precios</h2>
+        <div class="mt-8 space-y-0">
+          {services.map((s, i) => (
+            <div class="reveal flex items-center justify-between border-b border-borde py-4" style={`transition-delay: ${i * 40}ms`}>
+              <div>
+                <span class="text-sm font-medium text-texto">{s.name}</span>
+                <span class="ml-2 text-xs text-texto/40">{s.time}</span>
+              </div>
+              <span class="text-sm font-semibold text-terracota">{s.price}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEÑAS -->
+    <section class="py-12 px-4 sm:py-16 bg-superficie border-y border-borde">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="font-serif text-2xl font-bold text-center reveal">Reseñas</h2>
+        <div class="mt-8 grid gap-4 sm:grid-cols-3">
+          {reviews.map((r, i) => (
+            <div class="reveal rounded-card border border-borde bg-fondo p-5" style={`transition-delay: ${i * 80}ms`}>
+              <div class="flex text-terracota mb-2">
+                {Array.from({ length: 5 }).map(() => (
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                ))}
+              </div>
+              <p class="text-sm text-texto/70 leading-relaxed">"{r.text}"</p>
+              <p class="mt-3 text-xs text-texto/40">{r.name} · {r.source}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTABand headline="¿Te pillamos cerca?" subtitle="El local de La Ermita te espera." />
+  </main>
+
+  <Footer />
+</Layout>
+
+<style is:global>
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

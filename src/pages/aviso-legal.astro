@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Aviso Legal — Luis Tijera Barbería"
+  description="Aviso legal de Luis Tijera Barbería. Información legal sobre el titular de la web."
+  canonical="/aviso-legal"
+>
+  <Nav />
+
+  <main class="pt-16">
+    <section class="py-16 px-4 sm:py-20">
+      <div class="mx-auto max-w-2xl prose-legal">
+        <h1>Aviso Legal</h1>
+
+        <h2>1. Datos identificativos</h2>
+        <p>En cumplimiento del deber de información establecido en la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSI-CE), se facilitan los siguientes datos:</p>
+        <ul>
+          <li><strong>Titular:</strong> ⚠️ PENDIENTE CLIENTE</li>
+          <li><strong>NIF/CIF:</strong> ⚠️ PENDIENTE CLIENTE</li>
+          <li><strong>Domicilio:</strong> C. de la Libertad, 4, 28100 Alcobendas, Madrid</li>
+          <li><strong>Teléfono:</strong> 626 29 04 92</li>
+          <li><strong>Email:</strong> ⚠️ PENDIENTE CLIENTE</li>
+          <li><strong>Actividad:</strong> Barbería y peluquería</li>
+        </ul>
+
+        <h2>2. Objeto</h2>
+        <p>El presente aviso legal regula el uso y utilización del sitio web luistijera.es, del que es titular Luis Tijera Barbería.</p>
+
+        <h2>3. Propiedad intelectual e industrial</h2>
+        <p>Todos los contenidos del sitio web (textos, fotografías, gráficos, imágenes, iconos, tecnología, software, enlaces y demás contenidos audiovisuales o sonoros), así como su diseño gráfico y códigos fuente, son propiedad intelectual del titular, sin que puedan entenderse cedidos al usuario ninguno de los derechos de explotación reconocidos por la normativa vigente.</p>
+
+        <h2>4. Condiciones de uso</h2>
+        <p>El usuario se compromete a hacer un uso adecuado de los contenidos y servicios que el titular ofrece a través de su sitio web y a no emplearlos para actividades ilícitas.</p>
+
+        <h2>5. Exclusión de responsabilidad</h2>
+        <p>El titular no se hace responsable de la información y contenidos almacenados en foros, redes sociales o cualesquiera otros medios que permitan a terceros publicar contenidos de forma independiente en la página web del titular.</p>
+
+        <h2>6. Legislación aplicable</h2>
+        <p>Para la resolución de todas las controversias o cuestiones relacionadas con el presente sitio web, será de aplicación la legislación española, a la que se someten expresamente las partes.</p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose-legal h1 {
+    @apply font-serif text-3xl font-bold mb-6;
+  }
+  .prose-legal h2 {
+    @apply font-serif text-lg font-bold mt-8 mb-3 text-texto;
+  }
+  .prose-legal p {
+    @apply text-sm text-texto/70 leading-relaxed mb-4;
+  }
+  .prose-legal ul {
+    @apply text-sm text-texto/70 leading-relaxed mb-4 pl-5 list-disc;
+  }
+  .prose-legal li {
+    @apply mb-1;
+  }
+</style>

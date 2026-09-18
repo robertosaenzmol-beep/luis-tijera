@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Política de Cookies — Luis Tijera Barbería"
+  description="Política de cookies de Luis Tijera Barbería. Información sobre las cookies utilizadas en este sitio web."
+  canonical="/politica-de-cookies"
+>
+  <Nav />
+
+  <main class="pt-16">
+    <section class="py-16 px-4 sm:py-20">
+      <div class="mx-auto max-w-2xl prose-legal">
+        <h1>Política de Cookies</h1>
+
+        <h2>1. ¿Qué son las cookies?</h2>
+        <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web. Se utilizan para recordar tus preferencias y mejorar tu experiencia de navegación.</p>
+
+        <h2>2. Cookies que utilizamos</h2>
+
+        <h3>Cookies técnicas (necesarias)</h3>
+        <ul>
+          <li><strong>cookies_accepted:</strong> Almacena tu preferencia sobre cookies. Duración: permanente. Tipo: localStorage.</li>
+        </ul>
+
+        <h3>Cookies analíticas (con consentimiento)</h3>
+        <p>Solo se activan si aceptas las cookies en el banner:</p>
+        <ul>
+          <li><strong>_ga:</strong> Google Analytics. Distingue usuarios únicos. Duración: 2 años.</li>
+          <li><strong>_ga_*:</strong> Google Analytics. Mantiene el estado de la sesión. Duración: 2 años.</li>
+        </ul>
+
+        <h2>3. ¿Cómo gestionar las cookies?</h2>
+        <p>Puedes aceptar o rechazar las cookies analíticas mediante el banner que aparece al visitar la web por primera vez. También puedes configurar tu navegador para bloquear o eliminar cookies.</p>
+        <p>Si rechazas las cookies analíticas, la web seguirá funcionando con normalidad. Solo dejamos de recoger datos de uso anónimos.</p>
+
+        <h2>4. Más información</h2>
+        <p>Para más información sobre cómo Google utiliza los datos de Analytics, visita la página de privacidad de Google.</p>
+
+        <p class="text-xs text-texto/40 mt-8">Última actualización: septiembre 2026</p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose-legal h1 {
+    @apply font-serif text-3xl font-bold mb-6;
+  }
+  .prose-legal h2 {
+    @apply font-serif text-lg font-bold mt-8 mb-3 text-texto;
+  }
+  .prose-legal h3 {
+    @apply font-serif text-base font-bold mt-5 mb-2 text-texto;
+  }
+  .prose-legal p {
+    @apply text-sm text-texto/70 leading-relaxed mb-4;
+  }
+  .prose-legal ul {
+    @apply text-sm text-texto/70 leading-relaxed mb-4 pl-5 list-disc;
+  }
+  .prose-legal li {
+    @apply mb-1;
+  }
+</style>
